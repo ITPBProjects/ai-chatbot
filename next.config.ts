@@ -25,12 +25,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // Configure dev server to accept all hosts
-  ...(process.env.NODE_ENV === 'development' && {
-    devIndicators: {
-      buildActivity: false,
-    },
-  }),
 };
 
 export default nextConfig;
