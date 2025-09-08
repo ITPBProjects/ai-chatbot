@@ -64,11 +64,7 @@ export default async function RootLayout({
       className={`${geist.variable} ${geistMono.variable}`}
     >
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: THEME_COLOR_SCRIPT,
-          }}
-        />
+        <meta name="theme-color" content={LIGHT_THEME_COLOR} />
       </head>
       <body className="antialiased">
         <ThemeProvider

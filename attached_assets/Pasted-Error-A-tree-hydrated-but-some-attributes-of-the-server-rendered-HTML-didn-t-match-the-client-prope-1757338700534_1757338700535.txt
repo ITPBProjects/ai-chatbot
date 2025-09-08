@@ -1,0 +1,58 @@
+Error: A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload assetPrefix="" globalError={[...]}>
+      <AppDevOverlay state={{nextId:1, ...}} globalError={[...]}>
+        <AppDevOverlayErrorBoundary globalError={[...]} onError={function bound dispatchSetState}>
+          <ReplaySsrOnlyErrors>
+          <DevRootHTTPAccessFallbackBoundary>
+            <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+              <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+                <RedirectBoundary>
+                  <RedirectErrorBoundary router={{...}}>
+                    <Head>
+                    <link>
+                    <script>
+                    <script>
+                    <script>
+                    <RootLayout>
+                      <html lang="en" suppressHydrationWarning={true} className="geist_530f...">
+                        <head>
+                          <script
+                            dangerouslySetInnerHTML={{
++                             __html: "(function() {\n  var html = document.documentElement;\n  var meta = document.qu..."
+-                             __html: ""
+                            }}
+-                           src="/__replco/static/devtools/eruda/3.2.3/eruda.js"
+                          >
+                        ...
+                    ...
+        ...
+
+    at createConsoleError (https://688b5220-0a6b-4a35-81db-ed34f106cdc3-00-2rpobk2irvcyb.kirk.replit.dev/_next/static/chunks/3dc60_next_dist_client_62519b05._.js:882:71)
+    at handleConsoleError (https://688b5220-0a6b-4a35-81db-ed34f106cdc3-00-2rpobk2irvcyb.kirk.replit.dev/_next/static/chunks/3dc60_next_dist_client_62519b05._.js:1058:54)
+    at console.error (https://688b5220-0a6b-4a35-81db-ed34f106cdc3-00-2rpobk2irvcyb.kirk.replit.dev/_next/static/chunks/3dc60_next_dist_client_62519b05._.js:1223:57)
+    at https://688b5220-0a6b-4a35-81db-ed34f106cdc3-00-2rpobk2irvcyb.kirk.replit.dev/_next/static/chunks/3dc60_next_dist_compiled_react-dom-experimental_cf98ed4d._.js:2949:25
+    at runWithFiberInDEV (https://688b5220-0a6b-4a35-81db-ed34f106cdc3-00-2rpobk2irvcyb.kirk.replit.dev/_next/static/chunks/3dc60_next_dist_compiled_react-dom-experimental_cf98ed4d._.js:1319:74)
+    at emitPendingHydrationWarnings (https://688b5220-0a6b-4a35-81db-ed34f106cdc3-00-2rpobk2irvcyb.kirk.replit.dev/_next/static/chunks/3dc60_next_dist_compiled_react-dom-experimental_cf98ed4d._.js:2948:13)
+    at completeWork (https://688b5220-0a6b-4a35-81db-ed34f106cdc3-00-2rpobk2irvcyb.kirk.replit.dev/_next/static/chunks/3dc60_next_dist_compiled_react-dom-experimental_cf98ed4d._.js:6441:102)
+    at runWithFiberInDEV (https://688b5220-0a6b-4a35-81db-ed34f106cdc3-00-2rpobk2irvcyb.kirk.replit.dev/_next/static/chunks/3dc60_next_dist_compiled_react-dom-experimental_cf98ed4d._.js:1319:131)
+    at completeUnitOfWork (https://688b5220-0a6b-4a35-81db-ed34f106cdc3-00-2rpobk2irvcyb.kirk.replit.dev/_next/static/chunks/3dc60_next_dist_compiled_react-dom-experimental_cf98ed4d._.js:9167:23)
+    at performUnitOfWork (https://688b5220-0a6b-4a35-81db-ed34f106cdc3-00-2rpobk2irvcyb.kirk.replit.dev/_next/static/chunks/3dc60_next_dist_compiled_react-dom-experimental_cf98ed4d._.js:9104:28)
+    at workLoopConcurrentByScheduler (https://688b5220-0a6b-4a35-81db-ed34f106cdc3-00-2rpobk2irvcyb.kirk.replit.dev/_next/static/chunks/3dc60_next_dist_compiled_react-dom-experimental_cf98ed4d._.js:9098:58)
+    at renderRootConcurrent (https://688b5220-0a6b-4a35-81db-ed34f106cdc3-00-2rpobk2irvcyb.kirk.replit.dev/_next/static/chunks/3dc60_next_dist_compiled_react-dom-experimental_cf98ed4d._.js:9081:71)
+    at performWorkOnRoot (https://688b5220-0a6b-4a35-81db-ed34f106cdc3-00-2rpobk2irvcyb.kirk.replit.dev/_next/static/chunks/3dc60_next_dist_compiled_react-dom-experimental_cf98ed4d._.js:8670:154)
+    at performWorkOnRootViaSchedulerTask (https://688b5220-0a6b-4a35-81db-ed34f106cdc3-00-2rpobk2irvcyb.kirk.replit.dev/_next/static/chunks/3dc60_next_dist_compiled_react-dom-experimental_cf98ed4d._.js:9870:9)
+    at MessagePort.performWorkUntilDeadline (https://688b5220-0a6b-4a35-81db-ed34f106cdc3-00-2rpobk2irvcyb.kirk.replit.dev/_next/static/chunks/3dc60_next_dist_compiled_43941997._.js:2011:64)
+    at script (<anonymous>)
+    at RootLayout (rsc://React/Server/file:///home/runner/workspace/.next/server/chunks/ssr/%5Broot-of-the-server%5D__960fc7a5._.js?6:164:491)
