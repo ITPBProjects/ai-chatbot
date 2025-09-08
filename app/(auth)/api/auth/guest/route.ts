@@ -14,8 +14,13 @@ export async function GET(request: Request) {
   });
 
   if (token) {
-    return NextResponse.redirect(new URL('/', request.url));
+    return NextResponse.redirect(new URL(redirectUrl, request.url));
   }
 
-  return signIn('guest', { redirect: true, redirectTo: redirectUrl });
+  try {
+    return await signIn('guest', { redirect: true, redirectTo: redirectUrl });
+  } catch (error) {
+    // Fallback: redirect to home if auth fails
+    return NextResponse.redirect(new URL('/', request.url));
+  }
 }

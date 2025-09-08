@@ -24,6 +24,12 @@ export async function middleware(request: NextRequest) {
   });
 
   if (!token) {
+    // Prevent redirect loops by checking if we're already trying to authenticate
+    if (pathname === '/' && request.headers.get('referer')?.includes('/api/auth/guest')) {
+      // Allow the request to continue to avoid infinite redirects
+      return NextResponse.next();
+    }
+
     // Use pathname instead of full URL to avoid redirect loops with 0.0.0.0
     const redirectPath = request.nextUrl.pathname + request.nextUrl.search;
     const redirectUrl = encodeURIComponent(redirectPath);
