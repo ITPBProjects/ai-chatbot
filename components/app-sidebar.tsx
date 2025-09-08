@@ -34,11 +34,9 @@ export function AppSidebar({ user }: { user: User | undefined }) {
               }}
               className="flex flex-row gap-3 items-center"
             >
-              <img 
-                src="/pb-logo.svg" 
-                alt="PB Logo" 
-                className="h-8 w-auto px-2 hover:bg-muted rounded-md cursor-pointer"
-              />
+              <span className="text-lg font-semibold px-2 hover:bg-muted rounded-md cursor-pointer">
+                Chatbot
+              </span>
             </Link>
             <Tooltip>
               <TooltipTrigger asChild>
